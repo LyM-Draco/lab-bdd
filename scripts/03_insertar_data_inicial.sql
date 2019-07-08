@@ -14,14 +14,15 @@ insert into laboratorio.etapa (codigo, glosa) values('CONT', 'Contención de la 
 insert into laboratorio.etapa (codigo, glosa) values('ELI', 'Eliminación de la incidencia');
 insert into laboratorio.etapa (codigo, glosa) values('REC', 'Recuperación del laboratorio.sistema');
 
-insert into laboratorio.actividad (codigo, glosa) values('CLA', 'Clasificación. Determinar el nivel de prioridad');
-insert into laboratorio.actividad (codigo, glosa) values('INV', 'Investigación. Identificar, analizar y documentar todos los sintomas');
-insert into laboratorio.actividad (codigo, glosa) values('DIA', 'Diagnóstico. Determinar la ubicación y posibles correciones');
-insert into laboratorio.actividad (codigo, glosa) values('ESC', 'Escalamiento. Transferencia del incidente hacía el siguiente nivel de soporte');
-insert into laboratorio.actividad (codigo, glosa) values('SOL', 'Solución. Restablecer el servicio y mejorar la satisfacción del usuario');
-insert into laboratorio.actividad (codigo, glosa) values('CER', 'Cerrar. Cerrar el incidente, usuario confirma la solución del problema, se cierra la incidencia documentando el cierre.');
-insert into laboratorio.actividad (codigo, glosa) values('MON', 'Monitorización. Seguimiento y comunicación del incidente.');
-insert into laboratorio.actividad (codigo, glosa) values('RAM', 'Ramificación. Creación de nueva incidencia en base a la incidencia actual');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('CLA', 'Clasificación. Determinar el nivel de prioridad');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('INV', 'Investigación. Identificar, analizar y documentar todos los sintomas');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('DIA', 'Diagnóstico. Determinar la ubicación y posibles correciones');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('ESC', 'Escalamiento. Transferencia del incidente hacía el siguiente nivel de soporte');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('SOL', 'Solución. Restablecer el servicio y mejorar la satisfacción del usuario');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('CER', 'Cierre. Cerrar el incidente, usuario confirma la solución del problema, se cierra la incidencia documentando el cierre.');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('MON', 'Monitorización. Seguimiento y comunicación del incidente.');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('RAM', 'Ramificación. Creación de nueva incidencia en base a la incidencia actual');
+insert into laboratorio.tipo_actividad (codigo, glosa) values('OTRO', 'Otro tipo de actividad');
 
 insert into laboratorio.canal (codigo, glosa) values('COR', 'Correo');
 insert into laboratorio.canal (codigo, glosa) values('FON', 'Teléfono');

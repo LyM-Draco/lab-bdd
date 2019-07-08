@@ -1,7 +1,17 @@
-create table laboratorio.actividad(
+create table laboratorio.tipo_actividad(
   id serial primary key,
   codigo varchar(5) unique not null,
-  glosa varchar(300),
+  glosa text,
+  fecha_creacion timestamptz default now() not null,
+  fecha_actualizacion timestamptz,
+  fecha_eliminacion timestamptz,
+  eliminado boolean default false not null
+);
+
+create table laboratorio.actividad(
+  id serial primary key,
+  id_tipo_actividad integer references laboratorio.tipo_actividad not null;
+  descripcion text,
   fecha_creacion timestamptz default now() not null,
   fecha_actualizacion timestamptz,
   fecha_eliminacion timestamptz,
