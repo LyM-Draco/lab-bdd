@@ -17,10 +17,14 @@ create or replace function laboratorio.tiempo_promedio_sistema_etapa(out codigo,
                 from laboratorio.incidencia as inc
                 join laboratorio.bitacora as bita on bita.id_incidencia = inc.id
                 join laboratorio.etapa as eta on eta.id = bita.id_etapa
+                where inc.eliminado = false and
+                bita.eliminado = false and
+                etapa.eliminado = false
                 group by inc.id, eta.codigo
             ) as duracion_incidencia_etapa
         join laboratorio.incidencia as inc on inc.id = duracion_incidencia_etapa.inc_id
         join laboratorio.sistema as sis on sis.id = inc.id_sistema
+        where sis.eliminado = false
         group by sis.codigo, duracion_incidencia_etapa.eta_codigo
     end;
     $$ language plpgsql;
@@ -48,7 +52,16 @@ create or replace function laboratorio.tipo_producto_incidentes_graves(out nombr
             join laboratorio.actividad as act on act.id = bita.id_actividad
             join laboratorio.producto as prod on prod.id_actividad = act.id
             join laboratorio.tipo_producto as tpr on tpr.id = prod.id_tipo_product
-            where pri.codigo = 'URG'
+            where pri.codigo = 'URG' and
+            pai.eliminado = false and
+            suc.eliminado = false and
+            sis.eliminado = false and
+            inc.eliminado = false and
+            pri.eliminado = false and
+            bita.eliminado = false and
+            act.eliminado = false and
+            prod.eliminado = false and
+            tpr.eliminado = false
             group by pai.nombre, tpr.codigo
         )
         select nombre_pais, codigo_tipo_prod
@@ -72,7 +85,12 @@ create or replace function laboratorio.tipo_producto_incidentes_graves(out nombr
         join laboratorio.sistema as sis on sis.id_sucursal = suc.id
         join laboratorio.incidencia as inc on inc.id_sistema = sis.id
         join laboratorio.prioridad as pri on pri.id = inc.id_prioridad
-        where pri.codigo = 'BAJA'
+        where pri.codigo = 'BAJA' and
+        pai.eliminado = false and
+        suc.eliminado = false and
+        sis.eliminado = false and
+        inc.eliminado = false and
+        pri.eliminado = false
         group by pai.nombre
         order by count(inc.id) desc
         limit 1
@@ -92,7 +110,11 @@ create or replace function laboratorio.tipo_producto_incidentes_graves(out nombr
         join laboratorio.sistema as sis on sis.id_sucursal = suc.id
         join laboratorio.incidencia as inc on inc.id_sistema = sis.id
         join laboratorio.prioridad as pri on pri.id = inc.id_prioridad
-        where pri.codigo = 'ALTA'
+        where pri.codigo = 'ALTA' and
+        suc.eliminado = false and
+        sis.eliminado = false and
+        inc.eliminado = false and
+        pri.eliminado = false
         group by suc.codigo
         order by count(inc.id) asc
         limit 1
